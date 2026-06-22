@@ -9,9 +9,11 @@ Submit both your .py file and .doc/.docx file in this assignment and these files
 
 
 '''
+def main():
+    expenses_list = get_expenses()
+    sorted_expenses = expenses_list.reduce(sort_expenses)
 
-
-def get_expense():
+def get_expenses():
     expense_list = []
 
     expense ="placeholder"
@@ -28,6 +30,12 @@ def get_expense():
         expense_list.append(add_to_list)
     return expense_list
 
+def sort_expenses():
+    
+    expense_list = []
+    expense_amount = "placeholder"
 
-get_expense()
+
+
+get_expenses()
 
