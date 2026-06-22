@@ -15,10 +15,17 @@ def get_expense():
     expense_list = []
 
     expense ="placeholder"
+    expense_amount = "placeholder"
 
-    while expense != '':
+    while True:
         expense = input("Please enter the expense: When done, don't add anything- just enter.")
-        expense_list.append(expense)
+        if expense == "":
+            break
+
+        expense_amount = int(input("How much goes toward that expense?: "))
+
+        add_to_list = (expense, expense_amount)
+        expense_list.append(add_to_list)
     return expense_list
 
 
