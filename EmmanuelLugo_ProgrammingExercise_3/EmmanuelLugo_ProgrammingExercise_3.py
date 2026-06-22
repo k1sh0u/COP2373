@@ -9,9 +9,21 @@ Submit both your .py file and .doc/.docx file in this assignment and these files
 
 
 '''
+from functools import reduce
+
+
 def main():
     expenses_list = get_expenses()
-    sorted_expenses = expenses_list.reduce(sort_expenses)
+
+    if not expenses_list:
+        print("No expenses entered.")
+        return
+
+    sorted_expenses = reduce(sort_expenses, expenses_list)
+
+    print(sorted_expenses)
+
+
 
 def get_expenses():
     expense_list = []
@@ -30,12 +42,33 @@ def get_expenses():
         expense_list.append(add_to_list)
     return expense_list
 
-def sort_expenses():
-    
-    expense_list = []
-    expense_amount = "placeholder"
+def sort_expenses(list):
+
+
+    highest_expense_value = 0
+    highest_expense_item = ""
+    lowest_expense_value = highest_expense_value
+    lowest_expense_item = ""
+    expense_total = 0
+    for x, y in list:
+        expense_total += y
+
+        if(y > highest_expense_value):
+            highest_expense_value = y
+            highest_expense_item = x
+
+        if(y < lowest_expense_value):
+            lowest_expense_value = y
+            lowest_expense_item = x
+    return f"Total cost of expenses: {expense_total}, Your highest expense is {highest_expense_item} which costs: {highest_expense_value}, and lowest expense is {lowest_expense_item} which costs: {lowest_expense_value}"
 
 
 
-get_expenses()
+
+
+
+
+
+
+main()
 
