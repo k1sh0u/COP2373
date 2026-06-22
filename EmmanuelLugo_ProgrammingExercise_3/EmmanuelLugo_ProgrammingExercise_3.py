@@ -13,11 +13,13 @@ Submit both your .py file and .doc/.docx file in this assignment and these files
 
 def get_expense():
     expense_list = []
-    while True:
-        expense = input("Please enter the expense: /nWhen done, don't add- just enter.")
-        expense_list.append(expense)
 
-        return expense_list
+    expense ="placeholder"
+
+    while expense != '':
+        expense = input("Please enter the expense: When done, don't add anything- just enter.")
+        expense_list.append(expense)
+    return expense_list
 
 
 get_expense()
