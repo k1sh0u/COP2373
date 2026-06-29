@@ -72,7 +72,7 @@ def zip_code_test():
 
     while True:
 
-        raw_zip = input("Enter a zip code: ")
+        raw_zip = input("Enter your zip code: ")
         clean_string = re.sub(r"[^\d]", "", raw_zip)
         if re.match(r"^\d{5}$", clean_string):
             return clean_string
@@ -84,7 +84,7 @@ def phone_number_test():
 
     while True:
 
-        raw_number = input("Enter a phone number: ")
+        raw_number = input("Enter your phone number: ")
         clean_string = re.sub(r"[^\d]", "", raw_number)
         if re.match(r"^\d{10}$", clean_string):
             clean_string = f"({clean_string[0:3]}) {clean_string[3:6]}-{clean_string[6:]}"
@@ -97,16 +97,18 @@ def phone_number_test():
 
 
 
-'''
-    
+def ssn_test():
+
+    while True:
+
+        raw_ssn = input("Enter your SSN: ")
+        clean_string = re.sub(r"[^\d]", "", raw_ssn)
+        if re.match(r"^\d{9}$", clean_string):
+            clean_string = f"{clean_string[0:3]}-{clean_string[3:5]}-{clean_string[5:]}"
+
+            return clean_string
+        else:
+            print("Please enter a valid ssn.")
 
 
-def ssn_test(ssn):
 
-    test for ssn
-    
-
-define statement():
-takes all the variables and tells you "here is the info you entered".
-
-'''
