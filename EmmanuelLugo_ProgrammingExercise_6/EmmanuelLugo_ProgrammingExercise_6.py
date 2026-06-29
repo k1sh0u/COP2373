@@ -79,11 +79,27 @@ def zip_code_test():
         else:
             print("Please enter a valid zip code")
 
+
+def phone_number_test():
+
+    while True:
+
+        raw_number = input("Enter a phone number: ")
+        clean_string = re.sub(r"[^\d]", "", raw_number)
+        if re.match(r"^\d{10}$", clean_string):
+            clean_string = f"({clean_string[0:3]}) {clean_string[3:6]}-{clean_string[6:]}"
+
+            return clean_string
+        else:
+            print("Please enter a valid phone number.")
+
+
+
+
+
 '''
-def phone_number_test(number):
     
-    test for phone number
-    
+
 
 def ssn_test(ssn):
 
