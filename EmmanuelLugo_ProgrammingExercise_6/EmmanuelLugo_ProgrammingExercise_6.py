@@ -53,6 +53,7 @@ Maybe add a feature for the user to respond if something is wrong and they would
 
 '''
 
+import re
 
 def main():
 
@@ -63,22 +64,33 @@ def main():
 
 
 
-def zip_code_test(zip):
+
+def zip_code_test():
     '''
     test for zip code
     '''
 
+    while True:
+
+        raw_zip = input("Enter a zip code: ")
+        clean_string = re.sub(r"[^\d]", "", raw_zip)
+        if re.match(r"^\d{5}$", clean_string):
+            return clean_string
+        else:
+            print("Please enter a valid zip code")
+
+'''
 def phone_number_test(number):
-    '''
+    
     test for phone number
-    '''
+    
 
 def ssn_test(ssn):
-    '''
+
     test for ssn
-    '''
+    
 
 define statement():
-'''
 takes all the variables and tells you "here is the info you entered".
+
 '''
