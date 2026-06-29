@@ -5,5 +5,24 @@ You should have at least two functions, but you could have more.
 
 
 
+okay so we have to use re.findall, i'm assuming.
+
+
+pseudo code;
+
+def main:
+
+
+
+
+def capture_sentence():
+    this will capture the raw sentence
+
+
+def seperate_sentence():
+    this function will seperate each sentence, maybe at a period.?"
+
+    
+
 
 '''
