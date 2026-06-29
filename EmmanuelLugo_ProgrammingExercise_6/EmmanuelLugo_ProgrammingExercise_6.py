@@ -52,29 +52,14 @@ This function will take all the newly validated variables and for a statement, l
 Maybe add a feature for the user to respond if something is wrong and they would like to start over... maybe.
 
 '''
-zip_code = 0
-phone_number = 0
-ssn = 0
 
 
+def main():
 
-
-def main(zip, phone, social):
-
-    print("Hello! Please do not include dashes, slashes, or any special characters when entering you code")
-
-
-    zip_code = input("Please enter a zip code: ")
-    zip_code_test(zip_code)
-
-    phone_number = input("Please enter a phone number: ")
-    phone_number_test(phone_number)
-
-    ssn = input("Please enter a social security number: ")
-    ssn_test(ssn)
-
-    statement()
-
+    zip_code = zip_code_test
+    phone_number = phone_number_test
+    ssn = ssn_test
+    statement(zip_code, phone_number, ssn)
 
 
 
