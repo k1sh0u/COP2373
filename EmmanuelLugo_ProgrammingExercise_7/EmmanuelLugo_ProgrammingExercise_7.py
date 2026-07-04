@@ -1,46 +1,30 @@
-'''
-Using the code in Section 7.4, write a program that will allow me to enter a paragraph, including sentences which begin with numbers. Display each individual sentence and the count of sentences in the paragraph.
 
-You should have at least two functions, but you could have more.
-
-
-
-okay so we have to use re.findall, i'm assuming.
-
-
-pseudo code;
-
-def main:
-
-
-
-
-def capture_sentence():
-    this will capture the raw sentence
-
-
-def seperate_sentence():
-    this function will seperate each sentence, maybe at a period.?"
-
-
-
-
-'''
 
 import re
+#import re to access the built-in re module to use regular expressions.
 
+# main(), executes other functions created to receive input and extract/display sentences
 def main():
 
+    #input received and stored in variable to be passed to other functions
     paragraph = input("Please enter a paragraph: ")
 
+    #input passed in functions whose output will be stored in variables
     sentences = seperate_sentences(paragraph)
+
+    #sentences passed into this function to display and calculate sentences
     display_sentence(sentences)
 
-
+# function designed to take captured input by user and extract sentences
 def seperate_sentences(paragraph):
+
+    # Look ahead pattern to extract patterns.
     pattern = r'[A-Z0-9].*?[.!?](?= [A-Z0-9]|$)'
+
+    # used flags to makes sure sentences are captured correctly
     sentences = re.findall(pattern, paragraph, flags=re.DOTALL | re.MULTILINE)
     return sentences
+
 
 def display_sentence(sentence_list):
     for i in sentence_list:
