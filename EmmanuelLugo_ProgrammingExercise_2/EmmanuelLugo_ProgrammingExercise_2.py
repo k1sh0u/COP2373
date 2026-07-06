@@ -1,42 +1,62 @@
-"""
-Spam (or junk email) costs U.S. organizations billions of dollars a year in spam-prevention software, equipment, network resources, bandwidth, and lost productivity. Research online some of the most common spam email messages and words. Create a list of 30 words and phrases commonly found in spam messages. Write an application in which the user enters an email message. Then your application will scan the message for each of the 30 keywords or phrases. For each occurrence of one of these within the message, add a point to the message's "spam score". Next, rate the likelihood that the message is spam, based on the number of points received. Display the user's spam score, the likelihood message that it is spam, and the words/phrases which caused it to be spam.
-
-You should have at least two functions, but you can have more.
-
-You must also have a technical design document (refer to the Submitting Programming Exercises Module).
-
-Submit both your .py file and .doc/.docx file in this assignment and these files must also be in your repository.
-
-
-"""
-
+# check_spam() acts as the main function. Takes an assesses whether email message is spam.
 def check_spam():
+    # Empty variables that we'll use to store the spam words and likelihood determination.
     red_flags_captured = []
-    email_msg = input("Please enter your email message here: ")
+    likelihood = ""
 
+    # Asks the user to drop in their email message to scan for spam words.
+    email_msg = input("Please enter your email message here: ")
+    # to make things easier to compare, we'll make all words in email lowercase.
     clean_email_msg = email_msg.lower()
 
-    red_flags = ["act now","limited time offer","immediate action required","verify your account","confirm your identity","account is on hold", "account suspended","locked out","update your billing","100% free","risk-free","double your cash","financial freedom","you are a winner","claim your prize","guaranteed investment","earn extra income","cash refund","complimentary gift","cures baldness","miracle cure","scientifically proven","weight loss","burn fat","no prescription required","exclusive discount","unbelievable bargain","secret bonus","urgent","expired"]
+    # list of 30 common words found in spam messages.
+    red_flags = [
+        "act now", "limited", "urgent", "immediate", "required",
+        "verify", "confirm", "identity", "suspended", "locked",
+        "billing", "free", "risk-free", "cash", "income",
+        "winner", "prize", "claim", "gift", "refund",
+        "investment", "earn", "bonus", "discount", "bargain",
+        "miracle", "proven", "weight loss", "cure", "expired"
+    ]
 
+    # loops through every word in red flag list
     for word in red_flags:
+        #checks word in red flag list for existence in email message.
         if word.lower() in clean_email_msg:
+
+            #if red flag word present in email, counts how many times it occurs.
+            #loop, for each time the word occurs, it adds the word to captured list.
             occurrences = clean_email_msg.count(word.lower())
             for i in range(occurrences):
                 red_flags_captured.append(word)
 
-    print(len(red_flags))
 
-
-
+    # the actual spam score is returned once calculated in the spam test (see below).
     spam_score = spam_test(red_flags_captured, red_flags)
 
-    determination = f"Your spam score is {spam_score}%. Please proceed at your own risk based on the likelihood of your email message."
+    #Spam score will be associated with spam likelihood association.
+    if spam_score >= 30:
+        likelihood = "very high"
+    elif spam_score >= 15:
+        likelihood = "high"
+    elif spam_score >= 10:
+        likelihood = "above average"
+    elif spam_score >= 5:
+        likelihood = "below average"
+    else:
+        likelihood = "not high"
+
+    #The final message to the user.
+    determination = f"Your spam score is {spam_score}%, making the likelihood your email message being spam {likelihood}."
+
     print(determination)
 
 
 
-
+# the function will take the captured flag list and the common spam word list as args.
 def spam_test(flags, flag_list):
+
+    #The score will be the quotient of count of captured flags divided by count of common spam words.
     score = int((len(flags) / len(flag_list))*100)
     return score
 
