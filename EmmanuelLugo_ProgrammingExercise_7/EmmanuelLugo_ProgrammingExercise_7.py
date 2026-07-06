@@ -20,7 +20,7 @@ def seperate_sentences(paragraph):
 
     # Look ahead pattern to extract patterns.
     pattern = r'[A-Z0-9].*?[.!?](?= [A-Z0-9]|$)'
-
+    
     # used flags to makes sure sentences are captured correctly
     sentences = re.findall(pattern, paragraph, flags=re.DOTALL | re.MULTILINE)
     return sentences
