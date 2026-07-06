@@ -62,10 +62,7 @@ def buy_a_ticket(ticket_supply, buyers):
             print(f"there are only {ticket_supply} tickets left.")
         else:
             print(f"You have purchased {tickets_to_buy} tickets.")
-            ticket_supply -= tickets_to_buy
-            buyers += 1
-            ticket_sign(ticket_supply,buyers)
-            break
+            return ticket_supply
 
 
 
