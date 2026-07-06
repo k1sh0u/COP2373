@@ -20,8 +20,7 @@ Submit both your .py file and .doc/.docx file in this assignment and these files
 Two main variables to track how many buyers and how many available tickets at start
 and after each purchase.
 """
-buyers = 0
-ticket_supply = 20
+
 
 
 """
@@ -32,6 +31,8 @@ will not allow buyer to purchase once ticket_suppy is 0 and then will
 print accumulated number of buyers.
 """
 def ticket_sign(ticket_supply, buyers):
+    buyers = 0
+    ticket_supply = 20
 
     if ticket_supply >= 1:
         print(f"Welcome! We have {ticket_supply} tickets left.")
