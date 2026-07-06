@@ -11,9 +11,35 @@ Submit both your .py file and .doc/.docx file in this assignment and these files
 """
 
 def check_spam():
+    red_flags_captured = []
+    email_msg = input("Please enter your email message here: ")
 
-    red_flags = ["Act now!","Limited time offer","Immediate action required","100% free","Risk-free","Double your cash/income","Financial freedom","You are a winner!","Verify your account","Confirm your identity","Your account is on hold","Important information regarding...","Cures baldness""Miracle cure","Scientifically proven","Weight loss","Burn fat","No prescription required","Winner","Prize","Selected","Gift","Claim","Cash","Investment","Income","Refund","Earn","Urgent","Immediate","Expired","Required","Important","Free","Complimentary","Discount","Bargain","Bonus","Verify","Confirm","Suspended","Locked","Update"]
+    clean_email_msg = email_msg.lower()
+
+    red_flags = ["act now","limited time offer","immediate action required","verify your account","confirm your identity","account is on hold", "account suspended","locked out","update your billing","100% free","risk-free","double your cash","financial freedom","you are a winner","claim your prize","guaranteed investment","earn extra income","cash refund","complimentary gift","cures baldness","miracle cure","scientifically proven","weight loss","burn fat","no prescription required","exclusive discount","unbelievable bargain","secret bonus","urgent","expired"]
+
+    for word in red_flags:
+        if word.lower() in clean_email_msg:
+            occurrences = clean_email_msg.count(word.lower())
+            for i in range(occurrences):
+                red_flags_captured.append(word)
 
     print(len(red_flags))
+
+
+
+    spam_score = spam_test(red_flags_captured, red_flags)
+
+    determination = f"Your spam score is {spam_score}%. Please proceed at your own risk based on the likelihood of your email message."
+    print(determination)
+
+
+
+
+def spam_test(flags, flag_list):
+    score = int((len(flags) / len(flag_list))*100)
+    return score
+
+
 
 check_spam()
