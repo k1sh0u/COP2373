@@ -30,23 +30,26 @@ will call the buy_a_ticket function.
 will not allow buyer to purchase once ticket_suppy is 0 and then will 
 print accumulated number of buyers.
 """
-def ticket_sign(ticket_supply, buyers):
+def ticket_sign():
     buyers = 0
     ticket_supply = 20
 
-    if ticket_supply >= 1:
+    while ticket_supply > 0:
         print(f"Welcome! We have {ticket_supply} tickets left.")
-        buy_a_ticket(ticket_supply,buyers)
-    else:
-        print("we are sold out.")
-        print(f"Total buyers: {buyers}")
+
+        purchased = buy_a_ticket(ticket_supply)
+        ticket_supply -= purchased
+        buyers += 1
+
+    print("we are sold out.")
+    print(f"Total buyers: {buyers}")
 
 """
 buy_a_ticket function designed to take two variables and validate the input value type and
 and then allow the buyer to purchase inline with the purchasing guidelines.
 accumulates buyers after each purchase. 
 """
-def buy_a_ticket(ticket_supply, buyers):
+def buy_a_ticket(ticket_supply):
     while True:
 
         try:
@@ -62,12 +65,12 @@ def buy_a_ticket(ticket_supply, buyers):
             print(f"there are only {ticket_supply} tickets left.")
         else:
             print(f"You have purchased {tickets_to_buy} tickets.")
-            return ticket_supply
+            return tickets_to_buy
 
 
 
 "function called immediately initiates the process."
-ticket_sign(ticket_supply,buyers)
+ticket_sign()
 
 
 
