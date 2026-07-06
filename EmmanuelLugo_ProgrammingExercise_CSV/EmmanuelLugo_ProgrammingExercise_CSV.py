@@ -15,7 +15,7 @@ Submit both your .py file and .doc/.docx file in this assignment and these files
 
 
 
-%%writefile program1.py
+
 
 import csv
 def write_to_csv_file():
@@ -40,8 +40,20 @@ def write_to_csv_file():
             exam_2 = int(input("Enter exam 2: "))
             exam_3 = (input("Enter exam 3: "))
 
-            row = f"{first_name},{last_name},{exam_1},{exam_2},{exam_3}"
+            row = f"{first_name},{last_name},{exam_1},{exam_2},{exam_3},"
             file.write(row)
+
+def read_csv_file():
+    with open('grades.csv', 'r') as file:
+        entry = file.readlines()
+    full_content = ",".join(entry)
+    items = full_content.strip().split(',')
+
+    for i in range(0, len(items), 5):
+        row = items[i:i+5]
+        if len(row) == 5:
+            print(f"{row[0].strip():<15}{row[1].strip():<15}{row[2]:>10}{row[3]:>10}{row[4]:>10}")
+
 
 write_to_csv_file()
 

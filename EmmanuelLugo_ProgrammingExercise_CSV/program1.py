@@ -1,5 +1,3 @@
-
-
 import csv
 def write_to_csv_file():
     with open('grades.csv', 'w') as file:
@@ -23,7 +21,7 @@ def write_to_csv_file():
             exam_2 = int(input("Enter exam 2: "))
             exam_3 = (input("Enter exam 3: "))
 
-            row = f"{first_name} {last_name} {exam_1} {exam_2} {exam_3}"
+            row = f"{first_name},{last_name},{exam_1},{exam_2},{exam_3}"
             file.write(row)
 
 write_to_csv_file()
