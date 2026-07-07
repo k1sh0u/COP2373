@@ -20,16 +20,16 @@ def seperate_sentences(paragraph):
 
     # Look ahead pattern to extract patterns.
     pattern = r'[A-Z0-9].*?[.!?](?= [A-Z0-9]|$)'
-    
+
     # used flags to makes sure sentences are captured correctly
     sentences = re.findall(pattern, paragraph, flags=re.DOTALL | re.MULTILINE)
     return sentences
 
-
+# iterates through a list and displays each item, in this case each sentence, for the user.
 def display_sentence(sentence_list):
     for i in sentence_list:
         print(i)
-
+    # Finally, the total number of sentences extracted is displayed. 
     print(f"the total number of sentences is {len(sentence_list)}")
 
 
