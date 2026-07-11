@@ -9,11 +9,12 @@ You DO NOT NEED a technical design document for this assignment BUT YOU NEED TO 
 '''
 
 class Bank_acct:
-    def __init__(self, name, account_number,balance, interest_rate ):
+    def __init__(self, name, account_number,balance , rate, acct_age_in_days ):
         self.name = name
         self.account_number = account_number
-        self.balance = 0
-        self.interest_rate = interest_rate
+        self.balance = balance
+        self.interest_rate = rate
+        self.acct_age_in_days = acct_age_in_days
 
     def __str__(self):
 
@@ -25,4 +26,8 @@ class Bank_acct:
 
     def deposit(self, amount):
         self.balance += amount
-        
+
+    def calculate_interest(self):
+        accrued_interest = ((self.balance * self.interest_rate)/365)  * self.acct_age_in_days
+        return accrued_interest
+
