@@ -17,17 +17,27 @@ class Bank_acct:
         self.acct_age_in_days = acct_age_in_days
 
     def __str__(self):
+        return f"{self.name}\n{self.account_number}\n{self.balance}\n{self.interest_rate}\n{self.acct_age_in_days}"
 
-    def change_interest_rate(self, new_rate):
-        self.interest_rate = new_rate
+'''
+We have to remove all the input code from each method. The class should only receive the data through args for this assignment.
+'''
+    def change_interest_rate(self):
 
-    def withdraw(self, amount):
-        self.balance -= amount
+        self.interest_rate = float(input("Please enter a new interest rate: "))
 
-    def deposit(self, amount):
-        self.balance += amount
+    def withdraw(self):
+        self.balance -= float(input("Please enter a new balance: "))
+
+    def deposit(self):
+        self.balance += float(input("Please enter a new balance: "))
 
     def calculate_interest(self):
         accrued_interest = ((self.balance * self.interest_rate)/365)  * self.acct_age_in_days
         return accrued_interest
 
+
+def test():
+    acct_1 = Bank_acct()
+    acct_2 = Bank_acct()
+    acct_3 = Bank_acct()
