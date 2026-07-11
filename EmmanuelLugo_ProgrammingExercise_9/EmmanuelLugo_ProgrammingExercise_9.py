@@ -9,9 +9,20 @@ You DO NOT NEED a technical design document for this assignment BUT YOU NEED TO 
 '''
 
 class Bank_acct:
-    def __init__(self, name, account_number, interest_rate ):
+    def __init__(self, name, account_number,balance, interest_rate ):
         self.name = name
         self.account_number = account_number
+        self.balance = 0
         self.interest_rate = interest_rate
 
-    
+    def __str__(self):
+
+    def change_interest_rate(self, new_rate):
+        self.interest_rate = new_rate
+
+    def withdraw(self, amount):
+        self.balance -= amount
+
+    def deposit(self, amount):
+        self.balance += amount
+        
