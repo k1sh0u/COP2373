@@ -52,10 +52,10 @@ def poker(deck):
             hand.insert(index, deck.deal())
 
     deck.new_hand()
-
+    print("your new hand: ", hand)
 #of course the main function to kick it all off.
 def main():
-
+    
     my_deck = Deck(52)
     poker(my_deck)
 
