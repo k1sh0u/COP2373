@@ -8,6 +8,7 @@ Submit your .py file in this assignment and in your repository.
 
 import random
 
+# created the Deck class. Kinda just ripped straight out of the textbook as a good foundation.
 class Deck():
     def __init__(self, size):
         self.cards = [i for i in range(size)]
@@ -25,24 +26,44 @@ class Deck():
         return new_card
 
     def new_hand(self):
-        self.cards_discards += self.cards_in_play
+        self.cards_discarded += self.cards_in_play
         self.cards_in_play.clear()
 
+
+# the poker function initiates the dealing/discarding/drawing
 def poker(deck):
+
+    #hand container to hold the cards we currently have
     hand = []
+
+    # loop created to deal 5 cards and then prints them to show what we got.
     for card in range(5):
         hand.append(deck.deal())
     print(hand)
 
-    discarded = []
     print("You'll need to discard 3 cards. Remember, choose the position, not the card itself, so 1st card becomes 1, 2nd becomes 2, and so on.")
 
+    # loop created to ask the user 3 times what 3 cards they want to discard
     for i in range(3):
-        if user_discarded != "":
-            discard = input("Choose a card to discard and press enter.")
-            discarded.append(discard)
-            hand.pop(hand[discard])
-            
+        discard = input("Choose a card to discard and press enter.")
+        if discard != "":
+            index = int(discard) - 1
+            hand.pop(index)
+            hand.insert(index, deck.deal())
+
+    deck.new_hand()
+
+#of course the main function to kick it all off.
+def main():
+
+    my_deck = Deck(52)
+    poker(my_deck)
+
+
+if __name__ == '__main__':
+    main()
+
+
 
 
 
