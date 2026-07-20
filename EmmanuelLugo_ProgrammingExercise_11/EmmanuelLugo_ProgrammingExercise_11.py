@@ -34,5 +34,16 @@ def poker(deck):
         hand.append(deck.deal())
     print(hand)
 
-    user_discarded = input("Discard which cards? Choose 3 and enter the position of the cards, not the actual cards)")
-    
+    discarded = []
+    print("You'll need to discard 3 cards. Remember, choose the position, not the card itself, so 1st card becomes 1, 2nd becomes 2, and so on.")
+
+    for i in range(3):
+        if user_discarded != "":
+            discard = input("Choose a card to discard and press enter.")
+            discarded.append(discard)
+            hand.pop(hand[discard])
+            
+
+
+
+
