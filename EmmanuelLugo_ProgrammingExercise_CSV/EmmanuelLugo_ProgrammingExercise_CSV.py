@@ -1,25 +1,7 @@
-
-'''
-An instructor teaches a class in which each student takes three exams. The instructor would like to store this information in a file named grades.csv for later use. Create a program that allows an instructor to input how many students they want to enter. Then enter each student’s first name and last name as strings and the student’s three exam grades as integers. Use the csv module to write each record into the grades.csv file and have a header of First Name, Last Name, Exam 1, Exam 2 and Exam3. Each student should be a record in the grades.csv file.
-
-Once the file is created, create a separate program to read the grades.csv file and display the data in tabular format. Implement the with keyword. You may need to refer back to Chapter 5 for formatting.
-
-Each of these 2 programs should be separate functions so you have at least two functions for this assignment, but you can have more.
-
-You must also have a technical design document (refer to the Submitting Programming Exercises Module).
-
-Submit both your .py file and .doc/.docx file in this assignment and these files must also be in your repository.
-
-***The .csv file for this assignment should also be in your repository.
-'''
-
-
-
-
-
 import csv
+
 def write_to_csv_file():
-    with open('grades.csv', 'w') as file:
+    with open('../EmmanuelLugo_ProgrammingExercise_12/grades.csv', 'w') as file:
         write_data = file.write("First Name, Last Name, Exam 1, Exam 2, Exam3\n")
 
         while True:

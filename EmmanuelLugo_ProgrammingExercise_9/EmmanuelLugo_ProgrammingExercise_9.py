@@ -12,7 +12,7 @@ You DO NOT NEED a technical design document for this assignment BUT YOU NEED TO 
 class Bank_acct:
 
     # using the __init__ to make sure every instance of the bank_acct class supports the same set of variables
-    def __init__(self, name, account_number,balance , rate, acct_age_in_days ):
+    def __init__(self, name, account_number,balance, rate, acct_age_in_days ):
         self.name = name
         self.account_number = account_number
         self.balance = balance
@@ -59,3 +59,5 @@ def test():
 
 
 test()
+
+
