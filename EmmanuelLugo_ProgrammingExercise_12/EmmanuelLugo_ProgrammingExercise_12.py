@@ -22,3 +22,26 @@ Determine and print the number of students who passed and failed each exam. Cons
 Calculate and print the overall pass percentage across all exams.
 You should have at least two functions, but you can have more.
 '''
+import csv
+
+import numpy as np
+
+def main():
+ grades_list = []
+
+ with open('grades.csv', "r") as csv_file:
+  for line in csv_file:
+   row = line[1].strip().split(",")
+   grada_data = [item for item in row if item != ""]
+   grades_list.append(row)
+
+ grades_array = np.array(grades_list)
+
+ print(grades_array)
+ print("Array shape: ", grades_array.shape)
+
+
+
+main()
+
+
