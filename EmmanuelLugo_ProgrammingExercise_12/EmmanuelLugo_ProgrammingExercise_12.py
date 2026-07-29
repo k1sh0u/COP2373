@@ -27,13 +27,14 @@ import csv
 import numpy as np
 
 def main():
- grades_list = []
+    grades_list = []
 
- with open('grades.csv', "r") as csv_file:
-  for line in csv_file:
-   row = line[1].strip().split(",")
-   grada_data = [item for item in row if item != ""]
-   grades_list.append(row)
+    with open('grades.csv', "r") as csv_file:
+     lines = csv_file.readlines()
+
+    raw_data = line[1].strip().split(",")
+    raw_data = [item.strip() for item in raw_data if item.strip() != ""]
+
 
  grades_array = np.array(grades_list)
 
