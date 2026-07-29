@@ -32,14 +32,15 @@ def main():
     with open('grades.csv', "r") as csv_file:
      lines = csv_file.readlines()
 
-    raw_data = line[1].strip().split(",")
+    raw_data = lines[1].strip().split(",")
     raw_data = [item.strip() for item in raw_data if item.strip() != ""]
+    for i in range(0,len(raw_data), 5):
+        section = raw_data[i:i+5]
+        if len(section) == 5:
+            exams = [float(section[2]), float(section[3]), float(section[4])]
+            grades_list.append(exams)
 
-
- grades_array = np.array(grades_list)
-
- print(grades_array)
- print("Array shape: ", grades_array.shape)
+    return np.array(grades_list)
 
 
 
