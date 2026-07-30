@@ -26,7 +26,7 @@ import csv
 
 import numpy as np
 
-def main():
+def grades_to_array():
     grades_list = []
 
     with open('grades.csv', "r") as csv_file:
@@ -42,11 +42,10 @@ def main():
 
     return np.array(grades_list)
 
+def calculate_statistics(array):
+    print(array[:3])
 
-
-
-
-
+   
 main()
 
 
