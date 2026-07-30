@@ -48,13 +48,25 @@ def calculate_statistics(array):
     print("this is the median of the all the exams", np.median(array,axis=0))
     print("this is the min of the all the exams", np.min(array,axis=0))
     print("this is the max of the all the exams", np.max(array,axis=0))
+    print("this is the standard deviation of the all the exams", np.std(array,axis=0))
+    print("\n")
+    print("these are the statistics of all the exams")
+    print("this is the mean of the all the exams", np.mean(array))
+    print("this is the median of the all the exams", np.median(array))
+    print("this is the min of the all the exams", np.min(array))
+    print("this is the max of the all the exams", np.max(array))
+    print("this is the standard deviation of the all the exams", np.std(array))
+    print("\n")
+    print(f"# of students that passed the first exam: {np.sum(array[:,0] >= 60, axis=0)}\n students failed the first exam: {np.sum(array[:,0] < 60, axis=0)}")
+    print(f"How many students failed the second exam: {np.sum(array[:,1] < 60, axis=0)}")
+    print(f"How many students failed the third exam: {np.sum(array[:,2] < 60, axis=0)}")
 
 
 
 def main ():
-    grades_to_array()
+    grades_array = grades_to_array()
 
-    calculate_statistics(grades_to_array())
+    calculate_statistics(grades_array)
 
 if __name__ == '__main__':
     main()
