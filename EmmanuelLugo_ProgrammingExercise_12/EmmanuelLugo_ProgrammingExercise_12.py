@@ -7,10 +7,10 @@ Use your CSV file from your Programming Exercise CSV in Week 7. (The file should
 Load the data from the CSV file into a numpy array.
 Print the first few rows of the dataset to understand its structure.
 Calculate and print the following statistics for each exam (columns):
-Mean (average)
-Median
+Mean (average) x
+Median x
 Standard deviation
-Minimum
+Minimum x
 Maximum
 Calculate and print the overall statistics for the entire dataset (all exams combined):
 Mean (average) grade across all exams
@@ -44,7 +44,10 @@ def grades_to_array():
 
 def calculate_statistics(array):
     print(array)
-    print("this is the mean of the all the first exams", np.mean(array,axis=0))
+    print("this is the mean of the all the exams", np.mean(array,axis=0))
+    print("this is the median of the all the exams", np.median(array,axis=0))
+    print("this is the min of the all the exams", np.min(array,axis=0))
+    print("this is the max of the all the exams", np.max(array,axis=0))
 
 
 
@@ -53,3 +56,5 @@ def main ():
 
     calculate_statistics(grades_to_array())
 
+if __name__ == '__main__':
+    main()
