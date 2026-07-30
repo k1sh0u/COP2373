@@ -43,9 +43,13 @@ def grades_to_array():
     return np.array(grades_list)
 
 def calculate_statistics(array):
-    print(array[:3])
+    print(array)
+    print("this is the mean of the all the first exams", np.mean(array,axis=0))
 
-   
-main()
 
+
+def main ():
+    grades_to_array()
+
+    calculate_statistics(grades_to_array())
 
