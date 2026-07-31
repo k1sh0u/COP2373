@@ -9,9 +9,9 @@ Print the first few rows of the dataset to understand its structure.
 Calculate and print the following statistics for each exam (columns):
 Mean (average) x
 Median x
-Standard deviation
+Standard deviationx
 Minimum x
-Maximum
+Maximumx
 Calculate and print the overall statistics for the entire dataset (all exams combined):
 Mean (average) grade across all exams
 Median grade across all exams
@@ -22,11 +22,15 @@ Determine and print the number of students who passed and failed each exam. Cons
 Calculate and print the overall pass percentage across all exams.
 You should have at least two functions, but you can have more.
 '''
-import csv
 
+#importing my the CSV and numpy packages to use their functions
+import csv
 import numpy as np
 
+# grades_to_array created to use the csv file we used and create a numpy array using the contents of the file.
 def grades_to_array():
+
+    #contents of csv file will be
     grades_list = []
 
     with open('grades.csv', "r") as csv_file:
@@ -44,11 +48,11 @@ def grades_to_array():
 
 def calculate_statistics(array):
     print(array)
-    print("this is the mean of the all the exams", np.mean(array,axis=0))
-    print("this is the median of the all the exams", np.median(array,axis=0))
-    print("this is the min of the all the exams", np.min(array,axis=0))
-    print("this is the max of the all the exams", np.max(array,axis=0))
-    print("this is the standard deviation of the all the exams", np.std(array,axis=0))
+    print("this is the mean of each exam (1st, 2nd, 3rd): ", np.mean(array,axis=0))
+    print("this is the median of each exam (1st, 2nd, 3rd): ", np.median(array,axis=0))
+    print("this is the min of each exam (1st, 2nd, 3rd): ", np.min(array,axis=0))
+    print("this is the max of each exam (1st, 2nd, 3rd): ", np.max(array,axis=0))
+    print("this is the standard deviation of each exam (1st, 2nd, 3rd): ", np.std(array,axis=0))
     print("\n")
     print("these are the statistics of all the exams")
     print("this is the mean of the all the exams", np.mean(array))
@@ -57,10 +61,11 @@ def calculate_statistics(array):
     print("this is the max of the all the exams", np.max(array))
     print("this is the standard deviation of the all the exams", np.std(array))
     print("\n")
-    print(f"# of students that passed the first exam: {np.sum(array[:,0] >= 60, axis=0)}\n students failed the first exam: {np.sum(array[:,0] < 60, axis=0)}")
-    print(f"How many students failed the second exam: {np.sum(array[:,1] < 60, axis=0)}")
-    print(f"How many students failed the third exam: {np.sum(array[:,2] < 60, axis=0)}")
-
+    print(f"# of students that passed the first exam: {np.sum(array[:,0] >= 60, axis=0)}\n# of students failed the first exam: {np.sum(array[:,0] < 60)}")
+    print(f"# of students that passed the second exam: {np.sum(array[:,1] >= 60, axis=0)}\n# of students failed the second exam: {np.sum(array[:,1] < 60)}")
+    print(f"# of students that passed the third exam: {np.sum(array[:,2] >= 60, axis=0)}\n# of students failed the third exam: {np.sum(array[:,2] < 60)} ")
+    print("\n")
+    print(f"The overall passing percentage is {(np.sum(array >= 60) / array.size) * 100}%")
 
 
 def main ():
