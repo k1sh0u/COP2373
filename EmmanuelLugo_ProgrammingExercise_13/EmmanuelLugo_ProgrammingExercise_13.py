@@ -10,3 +10,11 @@ This assignment will have at least three functions.
 Submit your .py file in this assignment and in your repository.
 '''
 
+import sqlite3
+import matplotlib.pyplot as plt
+import numpy as np
+
+conn = sqlite3.connect('population_EL.db')
+
+cursor = conn.cursor()
+
