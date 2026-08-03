@@ -18,3 +18,30 @@ conn = sqlite3.connect('population_EL.db')
 
 cursor = conn.cursor()
 
+cursor.execute('DROP TABLE IF EXISTS population')
+
+cursor.execute('''
+CREATE TABLE population (
+	city TEXT,
+	year INTEGER,
+	population INTEGER)
+''')
+
+city_data = [
+        ('Tampa', 2023, 398000),
+        ('Miami', 2023, 450000),
+        ('Orlando', 2023, 316000),
+        ('Jacksonville', 2023, 971000),
+        ('Sarasota', 2023, 55000),
+        ('Bradenton', 2023, 57000),
+        ('St. Petersburg', 2023, 261000),
+        ('Fort Lauderdale', 2023, 182000),
+        ('Pensacola', 2023, 54000),
+        ('Tallahassee', 2023, 201000)
+    ]
+
+cursor.executemany('INSERT INTO population VALUES (?,?,?)', city_data)
+
+conn.commit()
+conn.close()
+
