@@ -14,7 +14,7 @@ import sqlite3
 import matplotlib.pyplot as plt
 import numpy as np
 
-def setup()
+def setup():
         conn = sqlite3.connect('population_EL.db')
 
         cursor = conn.cursor()
@@ -47,7 +47,7 @@ def setup()
         conn.close()
 
 def sim_pop_growth():
-        rate = (float(random.randint(-10,10))/100)
+
         years = 20
         new_data = []
 
@@ -63,10 +63,10 @@ def sim_pop_growth():
 
         for city, pop in current_city_data:
                 current_population = float(pop)
-
+                rate = (float(random.randint(-10, 10)) / 100)
                 for year in range(0, years):
-                        current_pop = current_pop * (1 + rate)
-                        new_data.append(city, (year + 1), int(current_pop))
+                        current_pop = current_population * (1 + rate)
+                        new_data.append((city, (year + 1), int(current_pop)))
 
         cursor.executemany("INSERT INTO population VALUES (?,?,?)", new_data)
 
