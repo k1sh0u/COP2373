@@ -14,34 +14,46 @@ import sqlite3
 import matplotlib.pyplot as plt
 import numpy as np
 
-conn = sqlite3.connect('population_EL.db')
+def setup()
+        conn = sqlite3.connect('population_EL.db')
 
-cursor = conn.cursor()
+        cursor = conn.cursor()
 
-cursor.execute('DROP TABLE IF EXISTS population')
+        cursor.execute('DROP TABLE IF EXISTS population')
 
-cursor.execute('''
-CREATE TABLE population (
-	city TEXT,
-	year INTEGER,
-	population INTEGER)
-''')
+        cursor.execute('''
+        CREATE TABLE population (
+            city TEXT,
+            year INTEGER,
+            population INTEGER)
+        ''')
 
-city_data = [
-        ('Tampa', 2023, 398000),
-        ('Miami', 2023, 450000),
-        ('Orlando', 2023, 316000),
-        ('Jacksonville', 2023, 971000),
-        ('Sarasota', 2023, 55000),
-        ('Bradenton', 2023, 57000),
-        ('St. Petersburg', 2023, 261000),
-        ('Fort Lauderdale', 2023, 182000),
-        ('Pensacola', 2023, 54000),
-        ('Tallahassee', 2023, 201000)
-    ]
+        city_data = [
+                ('Tampa', 2026, 419635),
+                ('Miami', 2026, 499943),
+                ('Orlando', 2026, 340004),
+                ('Jacksonville', 2026, 1032061),
+                ('Sarasota', 2026, 59000),
+                ('Bradenton', 2026, 57000),
+                ('St. Petersburg', 2026, 266670),
+                ('Fort Lauderdale', 2026, 190168),
+                ('Pensacola', 2026, 54608),
+                ('Tallahassee', 2026, 206428)
+            ]
 
-cursor.executemany('INSERT INTO population VALUES (?,?,?)', city_data)
+        cursor.executemany('INSERT INTO population VALUES (?,?,?)', city_data)
 
-conn.commit()
-conn.close()
+        conn.commit()
+        conn.close()
 
+def sim_pop_growth():
+        conn = sqlite3.connect('population_EL.db')
+        cursor = conn.cursor()
+
+        cursor.execute(
+                "SELECT city, population FROM population WHERE year = 2023"
+        )
+
+        current_city_data = cursor.fetchall()
+
+        new_data = []
