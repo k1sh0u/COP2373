@@ -9,7 +9,7 @@ This assignment will have at least three functions.
 
 Submit your .py file in this assignment and in your repository.
 '''
-
+import random
 import sqlite3
 import matplotlib.pyplot as plt
 import numpy as np
@@ -47,13 +47,29 @@ def setup()
         conn.close()
 
 def sim_pop_growth():
+        rate = (float(random.randint(-10,10))/100)
+        years = 20
+        new_data = []
+
         conn = sqlite3.connect('population_EL.db')
         cursor = conn.cursor()
-
         cursor.execute(
-                "SELECT city, population FROM population WHERE year = 2023"
+                "SELECT city, population FROM population WHERE year = 2026"
         )
+
+
 
         current_city_data = cursor.fetchall()
 
-        new_data = []
+        for city, pop in current_city_data:
+                current_population = float(pop)
+
+                for year in range(0, years):
+                        current_pop = current_pop * (1 + rate)
+                        new_data.append(city, (year + 1), int(current_pop))
+
+        cursor.executemany("INSERT INTO population VALUES (?,?,?)", new_data)
+
+        conn.commit()
+        conn.close()
+
