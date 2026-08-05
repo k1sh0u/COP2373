@@ -47,10 +47,8 @@ def setup():
         conn.close()
 
 def sim_pop_growth():
-
-        years = 20
+        year = 2026
         new_data = []
-
         conn = sqlite3.connect('population_EL.db')
         cursor = conn.cursor()
         cursor.execute(
@@ -64,12 +62,22 @@ def sim_pop_growth():
         for city, pop in current_city_data:
                 current_population = float(pop)
                 rate = (float(random.randint(-10, 10)) / 100)
-                for year in range(0, years):
-                        current_pop = current_population * (1 + rate)
-                        new_data.append((city, (year + 1), int(current_pop)))
+                for year in range(year, int(2046)):
+                        current_pop = current_population * (float(1 + rate))
+                        new_data.append((city, year, int(current_pop)))
 
         cursor.executemany("INSERT INTO population VALUES (?,?,?)", new_data)
 
         conn.commit()
         conn.close()
+        print(new_data)
+def main():
+        setup()
 
+        return sim_pop_growth()
+
+
+
+
+if __name__ == '__main__':
+        main()
