@@ -11,88 +11,113 @@ Submit your .py file in this assignment and in your repository.
 '''
 import random
 import sqlite3
+from dataclasses import dataclass
+from enum import nonmember
+
 import matplotlib.pyplot as plt
 import numpy as np
 
 def setup():
-        conn = sqlite3.connect('population_EL.db')
+		conn = sqlite3.connect('population_EL.db')
 
-        cursor = conn.cursor()
+		cursor = conn.cursor()
 
-        cursor.execute('DROP TABLE IF EXISTS population')
+		cursor.execute('DROP TABLE IF EXISTS population')
 
-        cursor.execute('''
-        CREATE TABLE population (
-            city TEXT,
-            year INTEGER,
-            population INTEGER)
-        ''')
+		cursor.execute('''
+		CREATE TABLE population (
+			city TEXT,
+			year INTEGER,
+			population INTEGER)
+		''')
 
-        city_data = [
-                ('Tampa', 2026, 419635),
-                ('Miami', 2026, 499943),
-                ('Orlando', 2026, 340004),
-                ('Jacksonville', 2026, 1032061),
-                ('Sarasota', 2026, 59000),
-                ('Bradenton', 2026, 57000),
-                ('St. Petersburg', 2026, 266670),
-                ('Fort Lauderdale', 2026, 190168),
-                ('Pensacola', 2026, 54608),
-                ('Tallahassee', 2026, 206428)
-            ]
+		city_data = [
+				('Tampa', 2026, 419635),
+				('Miami', 2026, 499943),
+				('Orlando', 2026, 340004),
+				('Jacksonville', 2026, 1032061),
+				('Sarasota', 2026, 59000),
+				('Bradenton', 2026, 57000),
+				('St. Petersburg', 2026, 266670),
+				('Fort Lauderdale', 2026, 190168),
+				('Pensacola', 2026, 54608),
+				('Tallahassee', 2026, 206428)
+			]
 
-        cursor.executemany('INSERT INTO population VALUES (?,?,?)', city_data)
+		cursor.executemany('INSERT INTO population VALUES (?,?,?)', city_data)
 
-        conn.commit()
-        conn.close()
+		conn.commit()
+		conn.close()
 
 def sim_pop_growth():
-        new_data = []
-        conn = sqlite3.connect('population_EL.db')
-        cursor = conn.cursor()
-        cursor.execute(
-                "SELECT city, population FROM population WHERE year = 2026"
-        )
+		new_data = []
+		conn = sqlite3.connect('population_EL.db')
+		cursor = conn.cursor()
+		cursor.execute(
+				"SELECT city, population FROM population WHERE year = 2026"
+		)
 
 
 
-        current_city_data = cursor.fetchall()
+		current_city_data = cursor.fetchall()
 
-        for city, pop in current_city_data:
-                current_population = float(pop)
+		for city, pop in current_city_data:
+				current_population = float(pop)
 
-                for year in range(2027, 2046):
-                        rate = (float(random.randint(-10, 10)) / 100)
-                        current_pop = current_population * (float(1 + rate))
-                        new_data.append((city, year, int(current_pop)))
-                        current_population = current_pop
+				for year in range(2027, 2046):
+						rate = (float(random.randint(-10, 10)) / 100)
+						current_pop = current_population * (float(1 + rate))
+						new_data.append((city, year, int(current_pop)))
+						current_population = current_pop
 
-        cursor.executemany("INSERT INTO population VALUES (?,?,?)", new_data)
+		cursor.executemany("INSERT INTO population VALUES (?,?,?)", new_data)
 
-        conn.commit()
-        conn.close()
-        print(new_data)
+		conn.commit()
+		conn.close()
+		print(new_data)
 
 def plot_cities():
-        conn = sqlite3.connect('population_EL.db')
-        cursor = conn.cursor()
+	conn = sqlite3.connect('population_EL.db')
+	cursor = conn.cursor()
 
-        cursor.execute("SELECT DISTINCT city, population FROM population")
-        cities = [row[0] for row in cursor.fetchall()]
+	cursor.execute("SELECT DISTINCT city FROM population")
+	cities = [row[0] for row in cursor.fetchall()]
 
-        counter = 1
-        for city in cities:
-                print(f"{counter}. {city}")
-                counter += 1
+	counter = 1
+	for city in cities:
+		print(f"{counter}. {city}")
+		counter += 1
+
+	choose_city = input("\nChoose a city: ").strip()
+
+	matched_city = None
+	for city in cities:
+		if city.lower() == choose_city.lower():
+			matched_city = city
+			break
+
+
+	if matched_city:
+		cursor.execute("SELECT DISTINCT year, population FROM population WHERE city = ? ORDER BY year", (matched_city,))
+		data = cursor.fetchall()
+
+	years=[row[0] for row in data]
+	population = [row[1] for row in data]
+
+	plt.plot(years, populations)
+	plt.title(matched_city)
+	plt.xlabel("Year")
+	plt.ylabel("Population")
+	plt.show()
 
 
 def main():
-        setup()
+	setup()
 
-        return sim_pop_growth()
+	return sim_pop_growth()
 
 
 
 
 if __name__ == '__main__':
-        main()
+		main()
